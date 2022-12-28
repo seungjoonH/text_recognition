@@ -21,10 +21,10 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  void getImage() async {
+  void getImage([ImageSource source = ImageSource.gallery]) async {
     try {
       final pickedImage = await ImagePicker()
-          .pickImage(source: ImageSource.gallery);
+          .pickImage(source: source);
 
       if (pickedImage != null) {
         textScanning = true;
@@ -75,6 +75,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('text recognition'),
         actions: [
+          IconButton(
+            onPressed:() => getImage(ImageSource.camera),
+            icon: const Icon(Icons.camera_alt),
+          ),
           IconButton(
             onPressed: getImage,
             icon: const Icon(Icons.photo),
