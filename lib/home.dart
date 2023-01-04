@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:google_geocoding_api/google_geocoding_api.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -75,6 +75,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('text recognition'),
         actions: [
+          IconButton(
+            onPressed: () {Navigator.pushNamed(context, '/geolocation'); },
+            icon: const Icon(Icons.map),
+          ),
           IconButton(
             onPressed:() => getImage(ImageSource.camera),
             icon: const Icon(Icons.camera_alt),
