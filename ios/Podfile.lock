@@ -1,5 +1,14 @@
 PODS:
   - Flutter (1.0.0)
+  - flutter_keyboard_visibility (0.0.1):
+    - Flutter
+  - geocoding (1.0.5):
+    - Flutter
+  - geolocator_apple (1.2.0):
+    - Flutter
+  - google_maps_flutter_ios (0.0.1):
+    - Flutter
+    - GoogleMaps
   - google_mlkit_barcode_scanning (0.5.0):
     - Flutter
     - google_mlkit_commons
@@ -58,6 +67,11 @@ PODS:
     - GoogleUtilities/Environment (~> 7.7)
     - nanopb (< 2.30910.0, >= 2.30908.0)
     - PromisesObjC (< 3.0, >= 1.2)
+  - GoogleMaps (5.2.0):
+    - GoogleMaps/Maps (= 5.2.0)
+  - GoogleMaps/Base (5.2.0)
+  - GoogleMaps/Maps (5.2.0):
+    - GoogleMaps/Base
   - GoogleMLKit/BarcodeScanning (3.2.0):
     - GoogleMLKit/MLKitCore
     - MLKitBarcodeScanning (~> 2.2.0)
@@ -267,12 +281,20 @@ PODS:
     - nanopb/encode (= 2.30909.0)
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
+  - package_info_plus (0.4.5):
+    - Flutter
   - PromisesObjC (2.1.1)
   - Protobuf (3.21.12)
   - SSZipArchive (2.4.3)
+  - url_launcher_ios (0.0.1):
+    - Flutter
 
 DEPENDENCIES:
   - Flutter (from `Flutter`)
+  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
+  - geocoding (from `.symlinks/plugins/geocoding/ios`)
+  - geolocator_apple (from `.symlinks/plugins/geolocator_apple/ios`)
+  - google_maps_flutter_ios (from `.symlinks/plugins/google_maps_flutter_ios/ios`)
   - google_mlkit_barcode_scanning (from `.symlinks/plugins/google_mlkit_barcode_scanning/ios`)
   - google_mlkit_commons (from `.symlinks/plugins/google_mlkit_commons/ios`)
   - google_mlkit_digital_ink_recognition (from `.symlinks/plugins/google_mlkit_digital_ink_recognition/ios`)
@@ -291,10 +313,13 @@ DEPENDENCIES:
   - GoogleMLKit/TextRecognitionJapanese (~> 3.2.0)
   - GoogleMLKit/TextRecognitionKorean (~> 3.2.0)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
+  - package_info_plus (from `.symlinks/plugins/package_info_plus/ios`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
   trunk:
     - GoogleDataTransport
+    - GoogleMaps
     - GoogleMLKit
     - GoogleToolboxForMac
     - GoogleUtilities
@@ -339,6 +364,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Flutter:
     :path: Flutter
+  flutter_keyboard_visibility:
+    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
+  geocoding:
+    :path: ".symlinks/plugins/geocoding/ios"
+  geolocator_apple:
+    :path: ".symlinks/plugins/geolocator_apple/ios"
+  google_maps_flutter_ios:
+    :path: ".symlinks/plugins/google_maps_flutter_ios/ios"
   google_mlkit_barcode_scanning:
     :path: ".symlinks/plugins/google_mlkit_barcode_scanning/ios"
   google_mlkit_commons:
@@ -367,9 +400,17 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/google_mlkit_translation/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
+  package_info_plus:
+    :path: ".symlinks/plugins/package_info_plus/ios"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
 
 SPEC CHECKSUMS:
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
+  geocoding: 32cfcdb16d38d907caaba65e2e42ad10d38bee58
+  geolocator_apple: cc556e6844d508c95df1e87e3ea6fa4e58c50401
+  google_maps_flutter_ios: 66201f392bf62d500f07670a30488a247b9bb5b9
   google_mlkit_barcode_scanning: 5c18504510a7b3a326c2ab19758457633248b7b6
   google_mlkit_commons: e9070f57232c3a3e4bd42fdfa621bb1f4bb3e709
   google_mlkit_digital_ink_recognition: 0fc99e1e3dd8f1b05b34d22bea4172b1239ed510
@@ -384,6 +425,7 @@ SPEC CHECKSUMS:
   google_mlkit_text_recognition: 9967360384e93b09686aca67fc9f13f9a957d770
   google_mlkit_translation: 7172963dad4c9384211380bbb00e7ade234e1abd
   GoogleDataTransport: 1c8145da7117bd68bbbed00cf304edb6a24de00f
+  GoogleMaps: 025272d5876d3b32604e5c080dc25eaf68764693
   GoogleMLKit: 0017a6a8372e1a182139b9def4d89be5d87ca5a7
   GoogleToolboxForMac: 8bef7c7c5cf7291c687cf5354f39f9db6399ad34
   GoogleUtilities: bad72cb363809015b1f7f19beb1f1cd23c589f95
@@ -422,9 +464,11 @@ SPEC CHECKSUMS:
   MLKitVisionKit: bd7f84af2da356322872182b1f5bdf66f68e4584
   MLKitXenoCommon: 39b7097db51f4716a2a0ff4e4459e002499f5523
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
+  package_info_plus: 6c92f08e1f853dc01228d6f553146438dafcd14e
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
   Protobuf: 120350fc38646e2dedc26f49ecba778184ea1de2
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
+  url_launcher_ios: 839c58cdb4279282219f5e248c3321761ff3c4de
 
 PODFILE CHECKSUM: 27974d9ea943a019e791cae5ec6cfec767bf6843
 
