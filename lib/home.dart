@@ -76,6 +76,10 @@ class _HomePageState extends State<HomePage> {
         title: const Text('text recognition'),
         actions: [
           IconButton(
+            onPressed: () {Navigator.pushNamed(context, '/publicApi'); },
+            icon: const Icon(Icons.map_outlined),
+          ),
+          IconButton(
             onPressed: () {Navigator.pushNamed(context, '/geolocation'); },
             icon: const Icon(Icons.map),
           ),
