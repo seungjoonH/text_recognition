@@ -18,7 +18,7 @@ dependencies:
   google_maps_flutter: ^2.2.2
   map_location_picker: ^1.0.2
   get: ^4.6.5
-  http: any
+  http: ^0.13.5
   geolocator: ^9.0.1
   geocoding: ^2.0.5
   flutter_typeahead: ^4.1.1
