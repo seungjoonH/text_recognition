@@ -3,7 +3,8 @@ import 'package:google_geocoding_api/google_geocoding_api.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
-import 'package:google_geocoding_api/google_geocoding_api.dart';
+import 'package:google_maps_utils/google_maps_utils.dart' as util;
+import 'dart:math';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -163,11 +164,67 @@ class _HomePageState extends State<HomePage> {
     const String googelApiKey = 'AIzaSyBrAdaZUxs-rN6KR2ExrqpKQHnZBRH0uQ4';
     final bool isDebugMode = true;
     final api = GoogleGeocodingApi(googelApiKey, isLogged: isDebugMode);
-    final searchResults = await api.search(
-      'Boston',
+    final searchResults1 = await api.search(
+      '커피유야',
       language: 'kr',
     );
     // return searchResults;
-    print(searchResults);
+    print(searchResults1.results.first.geometry?.location.lat);
+    print(searchResults1.results.first.geometry?.location.lng);
+
+    final searchResults2 = await api.search(
+      '경상북도 포항시 북구 천마로 46번길 28-22',
+      language: 'kr',
+    );
+    print(searchResults2.results.first.geometry?.location.lat);
+    print(searchResults2.results.first.geometry?.location.lng);
+
+    Point from = Point((searchResults1.results.first.geometry?.location.lat)as num, (searchResults1.results.first.geometry?.location.lat)as num);
+    Point to = Point((searchResults2.results.first.geometry?.location.lat)as num, (searchResults2.results.first.geometry?.location.lat)as num);
+    Point randomPoint = Point(-23.54545, -23.898098);
+
+    double distance = util.SphericalUtils.computeDistanceBetween(from, to);
+    print('Distance: $distance meters');
+
+    // double heading = util.SphericalUtils.computeHeading(from, to);
+    // print('Heading: $heading degrees');
+    //
+    // double angle = util.SphericalUtils.computeAngleBetween(from, to);
+    // print('Angle: $angle degrees');
+    //
+    // double distanceToAB = util.PolyUtils.distanceToLine(randomPoint, from, to);
+    // print('Distance to Line: $distanceToAB meters');
+
+    /// Distance: 1241932.6430813475
+    /// Heading: 26.302486345342523
+    /// Angle: 0.19493500057547358
+    /// Distance to Line: 3675538.1518512294
+
+    /// See grid path on: https://developers.google.com/maps/documentation/utilities/polylinealgorithm
+
+    // List<Point> path = util.PolyUtils.decode(
+    //     'wjiaFz`hgQs}GmmBok@}vX|cOzKvvT`uNutJz|UgqAglAjr@ijBz]opA|Vor@}ViqEokCaiGu|@byAkjAvrMgjDj_A??ey@abD');
+    //
+    // print('path size length: ${path.length}');
+    //
+    // List<Point> simplifiedPath = util.PolyUtils.simplify(path, 5000);
+    // String simplifiedPathEncoded = util.PolyUtils.encode(simplifiedPath);
+    //
+    // print('simplified path: $simplifiedPathEncoded');
+    // print('path size simplified length: ${simplifiedPath.length}');
+    // /// Example by: https://github.com/nicolascav
+    // Point point = Point(-31.623060136389135, -60.68669021129609);
+
+    // /// Triangle
+    // List<Point> polygon = [
+    //   Point(-31.624115, -60.688734),
+    //   Point(-31.624115, -60.684657),
+    //   Point(-31.621594, -60.686717),
+    //   Point(-31.624115, -60.688734),
+    // ];
+    //
+    // bool contains = util.PolyUtils.containsLocationPoly(point, polygon);
+    // print('point is inside polygon?: $contains');
   }
 }
+
