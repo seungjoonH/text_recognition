@@ -3,6 +3,7 @@ import 'package:google_geocoding_api/google_geocoding_api.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:google_geocoding_api/google_geocoding_api.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,8 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   void getImage([ImageSource source = ImageSource.gallery]) async {
     try {
-      final pickedImage = await ImagePicker()
-          .pickImage(source: source);
+      final pickedImage = await ImagePicker().pickImage(source: source);
 
       if (pickedImage != null) {
         textScanning = true;
@@ -50,7 +50,8 @@ class _HomePageState extends State<HomePage> {
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.korean);
 
     // 문자열 인식 함수 호출 (Text Recognition)
-    RecognizedText recognisedText = await textRecognizer.processImage(inputImage);
+    RecognizedText recognisedText =
+        await textRecognizer.processImage(inputImage);
 
     scannedText = '';
 
@@ -76,15 +77,19 @@ class _HomePageState extends State<HomePage> {
         title: const Text('text recognition'),
         actions: [
           IconButton(
-            onPressed: () {Navigator.pushNamed(context, '/publicApi'); },
+            onPressed: () {
+              Navigator.pushNamed(context, '/publicApi');
+            },
             icon: const Icon(Icons.map_outlined),
           ),
           IconButton(
-            onPressed: () {Navigator.pushNamed(context, '/geolocation'); },
+            onPressed: () {
+              GeoCode();
+            },
             icon: const Icon(Icons.map),
           ),
           IconButton(
-            onPressed:() => getImage(ImageSource.camera),
+            onPressed: () => getImage(ImageSource.camera),
             icon: const Icon(Icons.camera_alt),
           ),
           IconButton(
@@ -100,42 +105,69 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 if (!textScanning && imageFile == null)
-                Container(
-                  width: 350.0,
-                  height: 350.0,
-                  color: Colors.grey.withOpacity(.5),
-                ),
-                if (imageFile != null)
-                Container(
-                  width: 350.0,
-                  height: 350.0,
-                  color: Colors.grey.withOpacity(.5),
-                  child: Image.file(
-                    File(imageFile!.path),
-                    fit: BoxFit.fill,
+                  Container(
+                    width: 350.0,
+                    height: 350.0,
+                    color: Colors.grey.withOpacity(.5),
                   ),
-                ),
+                if (imageFile != null)
+                  Container(
+                    width: 350.0,
+                    height: 150.0,
+                    color: Colors.grey.withOpacity(.5),
+                    child: Image.file(
+                      File(imageFile!.path),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 const SizedBox(height: 20.0),
                 Container(
                   padding: const EdgeInsets.all(10.0),
                   color: Theme.of(context).primaryColor.withOpacity(.3),
                   width: 350.0,
-                  height: 350.0,
+                  height: 150.0,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
                     physics: const AlwaysScrollableScrollPhysics(),
-                    child: Text(scannedText,
+                    child: Text(
+                      scannedText,
                       style: const TextStyle(fontSize: 25.0),
                     ),
                   ),
                 ),
+                // const SizedBox(height: 20.0),
+                // Container(
+                //   padding: const EdgeInsets.all(10.0),
+                //   color: Theme.of(context).primaryColor.withOpacity(.3),
+                //   width: 350.0,
+                //   height: 150.0,
+                //   child: SingleChildScrollView(
+                //     scrollDirection: Axis.vertical,
+                //     physics: const AlwaysScrollableScrollPhysics(),
+                //     child: Text(
+                //       textScanning ? GeoCode().toString() : 'No text Scanned',
+                //       style: const TextStyle(fontSize: 25.0),
+                //     ),
+                //   ),
+                // )
               ],
             ),
           ),
-          if (textScanning)
-          const Center(child: CircularProgressIndicator()),
+          if (textScanning) const Center(child: CircularProgressIndicator()),
         ],
       ),
     );
+  }
+
+  Future<void> GeoCode() async {
+    const String googelApiKey = 'AIzaSyBrAdaZUxs-rN6KR2ExrqpKQHnZBRH0uQ4';
+    final bool isDebugMode = true;
+    final api = GoogleGeocodingApi(googelApiKey, isLogged: isDebugMode);
+    final searchResults = await api.search(
+      'Boston',
+      language: 'kr',
+    );
+    // return searchResults;
+    print(searchResults);
   }
 }
