@@ -29,6 +29,10 @@ dependencies:
   baseflow_plugin_template: ^2.1.1
   google_geocoding_api: ^1.0.1+2
   google_maps_utils: ^1.5.0+0
+  photo_manager: ^2.5.2
+  geoflutterfire2: ^2.3.0
+  exif: ^3.1.2
+  native_exif: ^0.4.0
 
 
 dev_dependencies:
@@ -39,5 +43,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/
+#  assets:
+#    - assets/
